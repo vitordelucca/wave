@@ -1,0 +1,1512 @@
+<!DOCTYPE html><html lang="pt"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>A Desaceleração Econômica do Chile: Uma Análise da Década Perdida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #8b5a3c;
+            --accent: #d4af37;
+            --neutral: #f5f5f0;
+            --text: #2c3e50;
+            --text-muted: #6b7280;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--neutral);
+        }
+        
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .toc {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .toc a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .toc a:hover, .toc a.active {
+            color: white;
+            border-left-color: var(--accent);
+            padding-left: 1rem;
+        }
+        
+        .toc .level-2 {
+            padding-left: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .toc .level-3 {
+            padding-left: 2rem;
+            font-size: 0.8rem;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #8b5a3c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-overlay {
+            background: rgba(0,0,0,0.4);
+            position: absolute;
+            inset: 0;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 2rem;
+            height: 70vh;
+        }
+        
+        .bento-main {
+            grid-row: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .bento-stats {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .citation {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .citation:hover {
+            background-color: rgba(139, 90, 60, 0.1);
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            margin: 4rem 0;
+            border-radius: 1px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+        
+        .timeline-item {
+            border-left: 3px solid var(--secondary);
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+        
+        .pull-quote {
+            background: linear-gradient(135deg, rgba(30,58,95,0.05) 0%, rgba(139,90,60,0.05) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+        
+        /* Mermaid diagram styles */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+@media (max-width: 768px) {
+    .toc {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .toc.open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .bento-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .hero-section {
+        padding-top: 70px;
+    }
+
+    .bento-main {
+        padding: 1.5rem;
+    }
+
+    .bento-main h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+
+    .bento-main p {
+        font-size: 1rem;
+    }
+
+    .bento-stats {
+        padding: 1.5rem;
+    }
+
+    .bento-stats .text-4xl {
+        font-size: 1.75rem;
+    }
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Ensure mermaid diagrams are scrollable */
+    .mermaid-container {
+        overflow: auto;
+    }
+
+    /* Adjust mermaid controls for mobile */
+    .mermaid-controls {
+        top: auto;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bento-main h1 {
+        font-size: 2rem;
+    }
+}
+    </style>
+  </head>
+
+  <body>
+    <!-- Table of Contents -->
+    <nav class="toc">
+      <div class="mb-8">
+        <h2 class="text-white text-lg font-semibold mb-2">Índice</h2>
+        <div class="w-12 h-0.5 bg-yellow-400"></div>
+      </div>
+      <a href="#executive-summary" class="level-1">Resumo Executivo</a>
+      <a href="#confirmation" class="level-1">1. Confirmação da Desaceleração</a>
+      <a href="#comparison" class="level-2">1.1 Comparação por Década</a>
+      <a href="#lost-decade" class="level-2">1.2 A Década Perdida</a>
+      <a href="#explanatory-factors" class="level-1">2. Fatores Explicativos</a>
+      <a href="#maturity" class="level-2">2.1 Maturidade Econômica</a>
+      <a href="#productivity" class="level-2">2.2 Queda da Produtividade</a>
+      <a href="#copper-dependency" class="level-2">2.3 Dependência do Cobre</a>
+      <a href="#structural-factors" class="level-2">2.4 Fatores Estruturais</a>
+      <a href="#political-context" class="level-2">2.5 Contexto Político</a>
+      <a href="#external-factors" class="level-2">2.6 Fatores Externos</a>
+      <a href="#future-outlook" class="level-1">3. Perspectivas Futuras</a>
+      <a href="#projections" class="level-2">3.1 Projeções 2025+</a>
+      <a href="#reforms" class="level-2">3.2 Reformas Necessárias</a>
+    </nav>
+
+    <!-- Overlay for mobile menu -->
+    <div id="toc-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section text-white relative">
+        <div class="hero-overlay"></div>
+        <div class="container mx-auto px-6 py-16 relative z-10">
+          <div class="bento-grid">
+            <div class="bento-main">
+              <h1 class="serif text-6xl font-bold mb-6 leading-tight">
+                A <em class="text-yellow-300">Desaceleração</em> Econômica do Chile
+              </h1>
+              <p class="text-xl mb-8 text-gray-200 leading-relaxed">
+                Uma análise abrangente da &#34;década perdida&#34; (2013-2023) e os desafios estruturais
+                que transformaram uma das economias mais dinâmicas da América Latina
+              </p>
+              <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2">
+                  <i class="fas fa-chart-line text-yellow-300"></i>
+                  <span class="text-sm text-gray-300">Análise Econômica</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i class="fas fa-globe-americas text-yellow-300"></i>
+                  <span class="text-sm text-gray-300">Contexto Global</span>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="bento-stats">
+                <div class="text-4xl font-bold text-yellow-300 mb-2">43.5%</div>
+                <div class="text-sm text-gray-200">Crescimento PIB per capita
+                  <br/>2003-2013
+                </div>
+              </div>
+              <div class="bento-stats">
+                <div class="text-4xl font-bold text-red-400 mb-2">5.8%</div>
+                <div class="text-sm text-gray-200">Crescimento PIB per capita
+                  <br/>2013-2023
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="py-16 px-6">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="serif text-4xl font-bold mb-8 text-gray-800">Resumo Executivo</h2>
+
+          <div class="bg-white rounded-lg p-8 shadow-lg mb-8">
+            <p class="text-lg leading-relaxed mb-6">
+              A desaceleração econômica do Chile na última década representa uma das transformações
+              mais significativas na trajetória de desenvolvimento da América Latina. De uma economia
+              que crescia a taxas médias de <strong>4,8% ao ano</strong> entre 2003-2013, o país
+              viu seu crescimento desacelerar para meros <strong>2,0% ao ano</strong> na década seguinte.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+              <div class="text-center p-6 bg-gray-50 rounded-lg">
+                <div class="text-3xl font-bold text-green-600 mb-2">4.8%</div>
+                <div class="text-sm text-gray-600">Crescimento médio anual
+                  <br/>2003-2013
+                </div>
+              </div>
+              <div class="text-center p-6 bg-gray-50 rounded-lg">
+                <div class="text-3xl font-bold text-red-600 mb-2">2.0%</div>
+                <div class="text-sm text-gray-600">Crescimento médio anual
+                  <br/>2013-2023
+                </div>
+              </div>
+              <div class="text-center p-6 bg-gray-50 rounded-lg">
+                <div class="text-3xl font-bold text-orange-600 mb-2">1.8%</div>
+                <div class="text-sm text-gray-600">Projeção média anual
+                  <br/>2025-2034
+                </div>
+              </div>
+            </div>
+
+            <p class="text-lg leading-relaxed">
+              Esta análise identifica seis fatores principais para essa desaceleração: maior maturidade
+              econômica e a armadilha da renda média, queda da produtividade total dos fatores,
+              dependência do cobre e volatilidade das commodities, entraves estruturais e institucionais,
+              instabilidade política e social, e fatores externos globais.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 1: Confirmation -->
+      <section id="confirmation" class="py-16 px-6">
+        <div class="container mx-auto max-w-6xl">
+          <h2 class="serif text-4xl font-bold mb-12 text-gray-800">1. Confirmação da Desaceleração do Crescimento Econômico</h2>
+
+          <!-- Subsection 1.1 -->
+          <div id="comparison" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">1.1 Comparação das Taxas de Crescimento por Década</h3>
+
+            <p class="text-lg leading-relaxed mb-8">
+              A análise comparativa das taxas de crescimento econômico do Chile nas últimas décadas
+              revela uma <strong>desaceleração significativa</strong>, particularmente quando se
+              contrasta o período de 2003-2013 com a década mais recente de 2013-2023. Dados
+              consolidados pelo <a href="#" class="citation">Observatório Econômico e Social da
+                Universidade de La Frontera (OES-Ufro)</a>, com base em informações do Banco Central
+              do Chile e do Instituto Nacional de Estatísticas (INE), demonstram essa tendência de
+              forma clara.
+            </p>
+
+            <!-- Timeline Comparison -->
+            <div class="bg-white rounded-lg p-8 shadow-lg mb-8">
+              <h4 class="text-lg font-semibold mb-6">Evolução do Crescimento Econômico do Chile</h4>
+              <div class="space-y-6">
+                <div class="timeline-item">
+                  <div class="flex justify-between items-start mb-2">
+                    <h5 class="font-semibold text-lg">1990-2000</h5>
+                    <span class="text-2xl font-bold text-green-600">6.1%</span>
+                  </div>
+                  <p class="text-gray-600">Década de forte expansão e reformas estruturais</p>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="flex justify-between items-start mb-2">
+                    <h5 class="font-semibold text-lg">2000-2009</h5>
+                    <span class="text-2xl font-bold text-green-600">4.2%</span>
+                  </div>
+                  <p class="text-gray-600">Período de consolidação e crescimento sustentado</p>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="flex justify-between items-start mb-2">
+                    <h5 class="font-semibold text-lg">2003-2013</h5>
+                    <span class="text-2xl font-bold text-blue-600">4.8%</span>
+                  </div>
+                  <p class="text-gray-600">Década de ouro com crescimento robusto</p>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="flex justify-between items-start mb-2">
+                    <h5 class="font-semibold text-lg">2013-2023</h5>
+                    <span class="text-2xl font-bold text-red-600">2.0%</span>
+                  </div>
+                  <p class="text-gray-600">Década perdida com desaceleração acentuada</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pull-quote">
+              &#34;Essa drástica redução no ritmo de expansão econômica representa uma desaceleração
+              profunda e coloca em evidência os desafios enfrentados pela economia chilena.&#34;
+            </div>
+          </div>
+
+          <!-- Subsection 1.2 -->
+          <div id="lost-decade" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">1.2 A &#34;Década Perdida&#34;: 2013-2023</h3>
+
+            <p class="text-lg leading-relaxed mb-8">
+              O período entre 2013 e 2023 tem sido frequentemente caracterizado como uma
+              <strong>&#34;década perdida&#34;</strong> para a economia chilena, um termo que reflete a
+              estagnação do crescimento e a perda de dinamismo econômico em comparação com as
+              décadas anteriores.
+            </p>
+
+            <!-- Impact Indicators -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow">
+                <h5 class="font-semibold mb-4">Criação de Empregos</h5>
+                <div class="space-y-3">
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm text-gray-600">2004-2013</span>
+                      <span class="text-sm font-semibold">206 mil/ano</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm text-gray-600">2014-2023</span>
+                      <span class="text-sm font-semibold">93 mil/ano</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow">
+                <h5 class="font-semibold mb-4">Crescimento Salarial Real</h5>
+                <div class="space-y-3">
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm text-gray-600">2004-2013</span>
+                      <span class="text-sm font-semibold">2.4% ao ano</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm text-gray-600">2014-2023</span>
+                      <span class="text-sm font-semibold">1.2% ao ano</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+              <h5 class="font-semibold text-yellow-800 mb-2">Perspectivas Futuras Preocupantes</h5>
+              <p class="text-yellow-700">
+                As projeções para a próxima década (2025-2034) não são animadoras. O Banco Central
+                do Chile estima que o <strong>PIB tendencial terá uma expansão anual média de apenas
+                  1,8%</strong> para o período 2025-2034, sugerindo que o país pode estar enfrentando
+                não apenas uma, mas <strong>duas &#34;décadas perdidas&#34;</strong> consecutivas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 2: Explanatory Factors -->
+      <section id="explanatory-factors" class="py-16 px-6">
+        <div class="container mx-auto max-w-6xl">
+          <h2 class="serif text-4xl font-bold mb-12 text-gray-800">2. Fatores Explicativos para a Desaceleração</h2>
+
+          <!-- Factor 1: Economic Maturity -->
+          <div id="maturity" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">2.1 Maturidade Econômica e Armadilha da Renda Média</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <p class="text-lg leading-relaxed mb-6">
+                  Um dos fatores frequentemente citados para explicar a desaceleração do crescimento
+                  econômico do Chile é o <strong>atingimento de um maior grau de maturidade econômica</strong>,
+                  associado ao conceito da <strong>&#34;armadilha da renda média&#34;</strong>. O
+                  <a href="#" class="citation">Fundo Monetário Internacional (FMI)</a> apontou que
+                  <strong>&#34;o Chile ficando mais rico&#34; é uma das razões para o crescimento mais lento</strong>.
+                </p>
+
+                <div class="bg-blue-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-blue-800 mb-3">Convergência Interrompida</h5>
+                  <p class="text-blue-700 text-sm">
+                    Enquanto em 1990 o PIB per capita do Chile equivalia a 41% do de Portugal,
+                    em 2013 essa proporção havia subido para 80%. No entanto, o país retrocedeu
+                    de representar <strong>56% da renda média da OCDE em 2012 para 53% em 2022</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/economiadeservicos.com/9006bb66188f74b329a4303bda716ac18aee8539.jpg" alt="Comparação visual de economia em desenvolvimento versus economia madura" class="w-full h-64 object-cover rounded-lg shadow" size="medium" aspect="wide" style="photo" query="economia em desenvolvimento versus economia madura" referrerpolicy="no-referrer" data-modified="1" data-score="11583.00"/>
+              </div>
+            </div>
+
+            <div class="pull-quote">
+              &#34;Atingir um patamar mais elevado de renda torna mais difícil sustentar altas taxas
+              de crescimento, pois as oportunidades fáceis de ganhos de produtividade e de
+              imitação tecnológica já foram em grande parte exploradas.&#34;
+            </div>
+          </div>
+
+          <!-- Factor 2: Productivity -->
+          <div id="productivity" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">2.2 Queda da Produtividade Total dos Fatores (PTF)</h3>
+
+            <p class="text-lg leading-relaxed mb-8">
+              A <strong>queda no crescimento da Produtividade Total dos Fatores (PTF)</strong> é
+              apontada como um dos principais fatores estruturais por trás da desaceleração econômica
+              do Chile na última década. Dados do <a href="#" class="citation">Banco Central do Chile</a>
+              revelam uma tendência preocupante de desaceleração e até mesmo de crescimento negativo
+              da PTF a partir da década de 2010.
+            </p>
+
+            <!-- Productivity Trend -->
+            <div class="chart-container">
+              <h4 class="text-xl font-semibold mb-4">Evolução da Produtividade Total dos Fatores (PTF)</h4>
+              <div class="grid md:grid-cols-5 gap-4 mb-6">
+                <div class="text-center p-4 bg-green-50 rounded-lg">
+                  <div class="text-2xl font-bold text-green-600 mb-2">3.5%</div>
+                  <div class="text-sm text-gray-600">1991-1995</div>
+                </div>
+                <div class="text-center p-4 bg-yellow-50 rounded-lg">
+                  <div class="text-2xl font-bold text-yellow-600 mb-2">0.2%</div>
+                  <div class="text-sm text-gray-600">1996-2000</div>
+                </div>
+                <div class="text-center p-4 bg-blue-50 rounded-lg">
+                  <div class="text-2xl font-bold text-blue-600 mb-2">1.0%</div>
+                  <div class="text-sm text-gray-600">2001-2005</div>
+                </div>
+                <div class="text-center p-4 bg-orange-50 rounded-lg">
+                  <div class="text-2xl font-bold text-orange-600 mb-2">0.6%</div>
+                  <div class="text-sm text-gray-600">2006-2010</div>
+                </div>
+                <div class="text-center p-4 bg-red-50 rounded-lg">
+                  <div class="text-2xl font-bold text-red-600 mb-2">-0.1%</div>
+                  <div class="text-sm text-gray-600">2011-2020</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Factor 3: Copper Dependency -->
+          <div id="copper-dependency" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">2.3 Dependência do Cobre e Volatilidade dos Preços das Commodities</h3>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow">
+                <div class="text-center">
+                  <i class="fas fa-mountain text-4xl text-orange-600 mb-4"></i>
+                  <div class="text-3xl font-bold text-orange-600 mb-2">1/3</div>
+                  <div class="text-sm text-gray-600">da produção global de cobre</div>
+                </div>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow">
+                <div class="text-center">
+                  <i class="fas fa-chart-line text-4xl text-red-600 mb-4"></i>
+                  <div class="text-3xl font-bold text-red-600 mb-2">Alta</div>
+                  <div class="text-sm text-gray-600">Volatilidade de preços</div>
+                </div>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow">
+                <div class="text-center">
+                  <i class="fas fa-exclamation-triangle text-4xl text-yellow-600 mb-4"></i>
+                  <div class="text-3xl font-bold text-yellow-600 mb-2">Risco</div>
+                  <div class="text-sm text-gray-600">Dependência excessiva</div>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-lg leading-relaxed mb-6">
+              O Chile é o <strong>maior produtor mundial de cobre</strong>, responsável por cerca de
+              um terço da produção global, e o metal representa uma parcela significativa das
+              exportações e da receita fiscal do país. No entanto, essa dependência também torna
+              a economia <strong>vulnerável às flutuações dos preços internacionais das commodities</strong>.
+            </p>
+
+            <div class="bg-orange-50 border-l-4 border-orange-400 p-6">
+              <h5 class="font-semibold text-orange-800 mb-2">Doença Holandesa</h5>
+              <p class="text-orange-700">
+                Essa dependência de um único produto de exportação pode limitar o desenvolvimento
+                de outros setores da economia, particularmente aqueles com maior valor agregado e
+                intensivos em tecnologia, um fenômeno conhecido como <strong>&#34;doença holandesa&#34;</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Factor 4: Structural Factors -->
+          <div id="structural-factors" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">2.4 Fatores Estruturais e Institucionais</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h5 class="font-semibold mb-3 flex items-center">
+                    <i class="fas fa-file-alt text-blue-600 mr-2"></i>
+                    &#34;Permisología&#34; e Burocracia
+                  </h5>
+                  <p class="text-gray-600 text-sm">
+                    Excesso de regulamentações, burocracia e demoras nos processos de licenciamento
+                    e aprovação de projetos desestimulam investimentos e aumentam custos.
+                  </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h5 class="font-semibold mb-3 flex items-center">
+                    <i class="fas fa-graduation-cap text-green-600 mr-2"></i>
+                    Desafios Educacionais
+                  </h5>
+                  <p class="text-gray-600 text-sm">
+                    Apenas <strong>6% dos estudantes alcançam resultados de aprendizagem avançados</strong>,
+                    e muitos que ingressam na universidade acabam desistindo devido aos altos custos.
+                  </p>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h5 class="font-semibold mb-3 flex items-center">
+                    <i class="fas fa-question-circle text-red-600 mr-2"></i>
+                    Incerteza Regulatória
+                  </h5>
+                  <p class="text-gray-600 text-sm">
+                    Mudanças frequentes e imprevisíveis nas regras do jogo levam os agentes econômicos
+                    a adotarem uma postura mais cautelosa, adiando decisões de investimento.
+                  </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h5 class="font-semibold mb-3 flex items-center">
+                    <i class="fas fa-leaf text-purple-600 mr-2"></i>
+                    Avaliação Ambiental
+                  </h5>
+                  <p class="text-gray-600 text-sm">
+                    O sistema de avaliação de impacto ambiental tem sido alvo de discussão, com
+                    argumentos de que reformas são necessárias para agilizar a aprovação de projetos.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Factor 5: Political Context -->
+          <div id="political-context" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">2.5 Contexto Político e Social</h3>
+
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-lg mb-8">
+              <h4 class="text-xl font-semibold mb-4">Linha do Tempo Político Recente</h4>
+              <div class="relative">
+                <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-purple-300"></div>
+                <div class="space-y-8">
+                  <div class="relative flex items-start">
+                    <div class="absolute left-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+                      <span class="text-white text-xs">1</span>
+                    </div>
+                    <div class="ml-12">
+                      <h5 class="font-semibold">2019-2020</h5>
+                      <p class="text-gray-600">Protestos sociais e início do processo constituinte</p>
+                    </div>
+                  </div>
+                  <div class="relative flex items-start">
+                    <div class="absolute left-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+                      <span class="text-white text-xs">2</span>
+                    </div>
+                    <div class="ml-12">
+                      <h5 class="font-semibold">2021</h5>
+                      <p class="text-gray-600">Eleição de Gabriel Boric e mudança de governo</p>
+                    </div>
+                  </div>
+                  <div class="relative flex items-start">
+                    <div class="absolute left-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+                      <span class="text-white text-xs">3</span>
+                    </div>
+                    <div class="ml-12">
+                      <h5 class="font-semibold">2022-2024</h5>
+                      <p class="text-gray-600">Processo constituinte e reformas estruturais</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-lg leading-relaxed">
+              O <strong>contexto político e social do Chile na última década</strong> também desempenhou
+              um papel na desaceleração econômica. O país passou por períodos de
+              <strong>significativa instabilidade e protestos sociais</strong>, culminando no processo
+              de elaboração de uma nova constituição, que gerou incertezas sobre o futuro modelo
+              econômico e social do país.
+            </p>
+          </div>
+
+          <!-- Factor 6: External Factors -->
+          <div id="external-factors" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">2.6 Fatores Externos e Conjuntura Global</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="text-lg font-semibold mb-4">Principais Choques Externos</h4>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-virus text-red-600 mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold">Pandemia de COVID-19</h5>
+                      <p class="text-sm text-gray-600">Contração de 14,8% no PIB em 2020</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-handshake text-blue-600 mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold">Guerra Comercial EUA-China</h5>
+                      <p class="text-sm text-gray-600">Impacto no comércio global e commodities</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-up text-green-600 mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold">Aumento das Taxas de Juros</h5>
+                      <p class="text-sm text-gray-600">Elevação do custo do financiamento externo</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-chart-line text-orange-600 mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold">Desaceleração da China</h5>
+                      <p class="text-sm text-gray-600">Impacto direto na demanda por cobre</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/c.files.bbci.co.uk/e3d187cc458300bd17c4e0128f09e5d613325f2b.jpg" alt="Impacto da pandemia de COVID-19 na economia global" class="w-full h-64 object-cover rounded-lg shadow" size="medium" aspect="wide" style="photo" query="impacto pandemia covid19 economia global" referrerpolicy="no-referrer" data-modified="1" data-score="11598.00"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 3: Future Outlook -->
+      <section id="future-outlook" class="py-16 px-6">
+        <div class="container mx-auto max-w-6xl">
+          <h2 class="serif text-4xl font-bold mb-12 text-gray-800">3. Perspectivas e Projeções para o Crescimento Futuro</h2>
+
+          <!-- Subsection 3.1 -->
+          <div id="projections" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">3.1 Projeções de Crescimento para 2025 e Além</h3>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+                <h5 class="font-semibold text-blue-800 mb-2">FMI - 2024</h5>
+                <div class="text-3xl font-bold text-blue-600 mb-2">2.2%</div>
+                <p class="text-sm text-gray-600">Crescimento real estimado</p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+                <h5 class="font-semibold text-green-800 mb-2">FMI - 2025</h5>
+                <div class="text-3xl font-bold text-green-600 mb-2">2.0-2.5%</div>
+                <p class="text-sm text-gray-600">Projeção de crescimento</p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow border-l-4 border-orange-500">
+                <h5 class="font-semibold text-orange-800 mb-2">BC Chile - 2025-2034</h5>
+                <div class="text-3xl font-bold text-orange-600 mb-2">1.8%</div>
+                <p class="text-sm text-gray-600">PIB tendencial médio anual</p>
+              </div>
+            </div>
+
+            <div class="bg-red-50 border border-red-200 p-6 rounded-lg mb-8">
+              <h5 class="font-semibold text-red-800 mb-3">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                Alertas das Instituições Internacionais
+              </h5>
+              <div class="space-y-3 text-red-700">
+                <p>• <strong>FMI:</strong> &#34;Crescimento potencial do Chile precisa ser ampliado para lidar com pressões sociais e fiscais&#34;</p>
+                <p>• <strong>BC Chile:</strong> Projeção de 1,8% para 2025-2034 é insuficiente para o estágio de desenvolvimento</p>
+                <p>• <strong>OCDE:</strong> Necessidade urgente de reformas estruturais para evitar duas décadas perdidas</p>
+              </div>
+            </div>
+
+            <div class="pull-quote">
+              &#34;Se o Chile evoluir de maneira similar ao país mediano de referência e persistirem
+              os fatores demográficos e externos desfavoráveis, o crescimento tendencial de longo
+              prazo poderia ser de cerca de 1,9%.&#34;
+              <cite class="block text-sm mt-2 not-italic">— Fundo Monetário Internacional</cite>
+            </div>
+          </div>
+
+          <!-- Subsection 3.2 -->
+          <div id="reforms" class="mb-16">
+            <h3 class="serif text-2xl font-semibold mb-8 text-gray-700">3.2 Necessidade de Reformas Estruturais</h3>
+
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-lg mb-8">
+              <h4 class="text-xl font-semibold mb-6">Agenda de Reformas Prioritárias</h4>
+
+              <!-- Mermaid Diagram -->
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph TD
+                  A[&#34;Reformas Estruturais Necessárias&#34;] --&gt; B[&#34;Melhoria da Produtividade&#34;]
+                  A --&gt; C[&#34;Diversificação Econômica&#34;]
+                  A --&gt; D[&#34;Modernização Institucional&#34;]
+                  A --&gt; E[&#34;Desenvolvimento de Capital Humano&#34;]
+
+                  B --&gt; B1[&#34;Redução da &#39;permisología&#39;&#34;]
+                  B --&gt; B2[&#34;Promoção da inovação&#34;]
+                  B --&gt; B3[&#34;Infraestrutura digital&#34;]
+
+                  C --&gt; C1[&#34;Redução da dependência do cobre&#34;]
+                  C --&gt; C2[&#34;Desenvolvimento de setores de alta tecnologia&#34;]
+                  C --&gt; C3[&#34;Economia verde e sustentável&#34;]
+
+                  D --&gt; D1[&#34;Reforma previdenciária&#34;]
+                  D2[&#34;Sistema tributário progressivo&#34;]
+                  D3[&#34;Melhoria do ambiente de negócios&#34;]
+
+                  E --&gt; E1[&#34;Melhoria da qualidade da educação&#34;]
+                  E --&gt; E2[&#34;Formação técnica avançada&#34;]
+                  E --&gt; E3[&#34;Igualdade de gênero no mercado de trabalho&#34;]
+
+                  style A fill:#1e3a5f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+                  style B fill:#8b5a3c,stroke:#ffffff,stroke-width:3px,color:#ffffff
+                  style C fill:#8b5a3c,stroke:#ffffff,stroke-width:3px,color:#ffffff
+                  style D fill:#8b5a3c,stroke:#ffffff,stroke-width:3px,color:#ffffff
+                  style E fill:#8b5a3c,stroke:#ffffff,stroke-width:3px,color:#ffffff
+                  style B1 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style B2 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style B3 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style C1 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style C2 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style C3 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style D1 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style D2 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style D3 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style E1 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style E2 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                  style E3 fill:#d4af37,stroke:#2c5282,stroke-width:2px,color:#2c5282
+                </div>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h5 class="font-semibold text-lg mb-3 flex items-center">
+                    <i class="fas fa-cogs text-blue-600 mr-2"></i>
+                    Reformas Produtivas
+                  </h5>
+                  <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Redução da &#34;permisología&#34; e burocracia
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Promoção da inovação e tecnologia
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Melhoria da infraestrutura digital
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h5 class="font-semibold text-lg mb-3 flex items-center">
+                    <i class="fas fa-balance-scale text-purple-600 mr-2"></i>
+                    Reformas Sociais
+                  </h5>
+                  <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Reforma do sistema previdenciário
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Sistema tributário mais progressivo
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Redução das desigualdades
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h5 class="font-semibold text-lg mb-3 flex items-center">
+                    <i class="fas fa-graduation-cap text-green-600 mr-2"></i>
+                    Educação e Capital Humano
+                  </h5>
+                  <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Melhoria da qualidade da educação
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Formação técnica avançada
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Igualdade de gênero no mercado de trabalho
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h5 class="font-semibold text-lg mb-3 flex items-center">
+                    <i class="fas fa-leaf text-green-600 mr-2"></i>
+                    Sustentabilidade e Diversificação
+                  </h5>
+                  <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Redução da dependência do cobre
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Desenvolvimento de setores de alta tecnologia
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mr-2 mt-1 text-xs"></i>
+                      Transição para economia verde
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-6 mt-8">
+              <h5 class="font-semibold text-blue-800 mb-2">
+                <i class="fas fa-lightbulb mr-2"></i>
+                Conclusão: O Caminho a Seguir
+              </h5>
+              <p class="text-blue-700">
+                A superação da atual desaceleração econômica exigirá um <strong>esforço coordenado
+                  em múltiplas frentes</strong>. O Chile precisa implementar reformas estruturais
+                profundas que aumentem a produtividade, promovam a diversificação econômica,
+                fortaleçam as instituições e desenvolvam o capital humano. Sem essas mudanças,
+                o país corre o risco de enfrentar não apenas uma, mas <strong>duas décadas perdidas
+                  consecutivas</strong>, com sérias implicações para o desenvolvimento e o bem-estar
+                de sua população.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-800 text-white py-12 px-6">
+        <div class="container mx-auto max-w-4xl">
+          <div class="text-center">
+            <p class="text-gray-400 mb-4">
+              Esta análise foi baseada em dados do Banco Central do Chile, FMI, OCDE, Universidade de La Frontera,
+              e outras instituições acadêmicas e governamentais.
+            </p>
+            <p class="text-sm text-gray-500">
+              Todos os dados e citações estão vinculados às fontes originais para verificação e consulta adicional.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#1e3a5f',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#2c5282',
+                lineColor: '#8b5a3c',
+                secondaryColor: '#8b5a3c',
+                secondaryTextColor: '#ffffff',
+                secondaryBorderColor: '#d4af37',
+                tertiaryColor: '#d4af37',
+                tertiaryTextColor: '#2c5282',
+                tertiaryBorderColor: '#8b5a3c',
+                background: '#ffffff',
+                mainBkg: '#1e3a5f',
+                secondBkg: '#8b5a3c',
+                tertiaryBkg: '#d4af37',
+                // Improve text contrast
+                primaryTextColor: '#ffffff',
+                secondaryTextColor: '#ffffff',
+                tertiaryTextColor: '#2c5282',
+                textColor: '#2c3e50',
+                // Node specific colors
+                cScale0: '#1e3a5f',
+                cScale1: '#8b5a3c', 
+                cScale2: '#d4af37',
+                cScale3: '#2c5282',
+                cScale4: '#6b7280',
+                // Ensure good contrast
+                nodeBorder: '#2c5282',
+                clusterBkg: '#f8f9fa',
+                clusterBorder: '#8b5a3c',
+                defaultLinkColor: '#8b5a3c',
+                titleColor: '#2c3e50',
+                edgeLabelBackground: '#ffffff',
+                // Activity diagram colors
+                activeTaskBkgColor: '#1e3a5f',
+                activeTaskBorderColor: '#2c5282',
+                gridColor: '#e5e7eb',
+                section0: '#f8f9fa',
+                section1: '#f1f5f9',
+                section2: '#e2e8f0',
+                section3: '#cbd5e1'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            sequence: {
+                useMaxWidth: false
+            },
+            gantt: {
+                useMaxWidth: false
+            },
+            // Global font settings
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 14,
+            // Security
+            securityLevel: 'loose'
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize Mermaid Controls after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMermaidControls();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active link highlighting in TOC
+        const sections = document.querySelectorAll('section[id], div[id]');
+        const tocLinks = document.querySelectorAll('.toc a');
+
+        function updateActiveLink() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink(); // Initial call
+
+        // Animate progress bars on scroll
+        const progressBars = document.querySelectorAll('.progress-fill');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                }
+            });
+        }, observerOptions);
+
+        progressBars.forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+  
+
+</body></html>
